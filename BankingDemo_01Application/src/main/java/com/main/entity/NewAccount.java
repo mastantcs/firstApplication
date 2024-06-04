@@ -8,6 +8,7 @@ public class NewAccount {
 
 	@Id
 	private Integer id;
+	
 	private String  aHolderName;
 	private String  accountNumber;
 	private Double balance;
