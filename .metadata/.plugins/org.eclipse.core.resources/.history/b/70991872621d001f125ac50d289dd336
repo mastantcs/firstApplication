@@ -1,0 +1,22 @@
+package com.main.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.main.entity.NewAccount;
+import com.main.repository.NewAccountRepositoryInterface;
+
+@Service
+public class NewAccountServiceInterfaceImpl implements NewAccountServiceInterface {
+
+	@Autowired
+	private NewAccountRepositoryInterface repo;
+	
+	@Override
+	public NewAccount createAccount(NewAccount account) {
+		
+		NewAccount acc = repo.save(account);
+		return acc;
+	}
+
+}

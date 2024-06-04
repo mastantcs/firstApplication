@@ -1,0 +1,23 @@
+package com.main.web;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.main.entity.NewAccount;
+import com.main.service.NewAccountServiceInterface;
+
+@RestController
+public class NewAccountController {
+
+	@Autowired
+	private NewAccountServiceInterface ser;
+	
+	@PostMapping("/create")
+	public NewAccount createAccount(@RequestBody NewAccount account) {
+		
+		NewAccount acc = ser.createAccount(account);
+		return acc;
+	}
+}

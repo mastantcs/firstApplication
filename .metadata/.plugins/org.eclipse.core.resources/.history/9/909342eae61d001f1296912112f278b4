@@ -1,0 +1,92 @@
+package com.main.logic;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+public class SeparateOddAndEvenNumbers {
+
+	public static void main(String[] args) {
+
+		// Given a list of integers, separate odd and even numbers?
+
+		List<Integer> listOfIntegers = Arrays.asList(1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		Map<Boolean, List<Integer>> mapOfEvenAndOddNumbers = listOfIntegers.stream()
+				.collect(Collectors.partitioningBy(i -> i % 2 == 0));
+		Set<Entry<Boolean, List<Integer>>> entrySet = mapOfEvenAndOddNumbers.entrySet();
+		for (Entry<Boolean, List<Integer>> entry : entrySet) {
+			System.out.println(entry);
+		}
+
+		// How do you remove duplicate elements from a list using Java 8 streams?
+
+		listOfIntegers.stream().distinct().forEach(System.out::println);
+
+		// How do you find frequency of each character in a string using Java 8 streams?
+
+		String str = "mastanaPuli";
+		Map<String, Long> frequencyOfEachCharacter = Stream.of(str.split(""))
+				.collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		System.out.println(frequencyOfEachCharacter.entrySet());
+
+		// From the given list of integers, print the numbers which are multiples of 5
+
+		listOfIntegers.stream().filter(i -> i % 5 == 0).forEach(System.out::println);
+
+		// Given a list of integers, find maximum and minimum of those numbers?
+		int maximum = listOfIntegers.stream().max(Comparator.naturalOrder()).get();
+		int minimum = listOfIntegers.stream().min(Comparator.naturalOrder()).get();
+		System.out.println(maximum + "   " + minimum);
+
+		// How do you merge two unsorted arrays into single sorted array using Java 8
+		// streams?
+		int[] array1 = { 1, 2, 3, 4, 5 };
+		int[] array2 = { 6, 7, 8, 9, 10 };
+		int[] array3 = IntStream.concat(Arrays.stream(array2), Arrays.stream(array1)).toArray();
+		System.out.println(Arrays.toString(array3));
+
+		// How do you get three maximum numbers and three minimum numbers from the given
+		// list of integers?
+		listOfIntegers.stream().sorted().limit(3).forEach(System.out::println);
+		listOfIntegers.stream().sorted(Comparator.reverseOrder()).limit(3).forEach(System.out::println);
+
+		// Java 8 program to check if two strings are anagrams or not?
+		String str1 = "mastanpuli";
+		String str2 = "pulimastan";
+		str1 = Stream.of(str1.split("")).map(m -> m.toUpperCase()).sorted().collect(Collectors.joining());
+		str2 = Stream.of(str2.split("")).map(m -> m.toUpperCase()).sorted().collect(Collectors.joining());
+		if (str1.equals(str2)) {
+			System.out.println("Is a anagrams");
+		} else {
+			System.out.println("Is not a anagrams");
+		}
+
+		// Find sum of all digits of a number in Java 8?
+		int number = 1234;
+		int totalNum = Stream.of(String.valueOf(number).split("")).collect(Collectors.summingInt(Integer::parseInt));
+		System.out.println(totalNum);
+
+		// Given a list of strings, sort them according to increasing order of their
+		// length?
+		List<String> listOfStrings = Arrays.asList("puli", "mastan", "srinu", "tirupati", "danamma");
+		listOfStrings.stream().sorted(Comparator.comparing(String::length)).forEach(System.out::println);
+
+		// Reverse each word of a string using Java 8 streams?
+		String normalStr = "hello puli how are you";
+        String reverseStr = Stream.of(normalStr.split(" ")).map(m -> new StringBuffer(m).reverse()).collect(Collectors.joining(" "));
+        System.out.println(reverseStr);
+        
+        //Reverse an integer array
+        int[] reverseArray = IntStream.range(0, array1.length).map(m -> array1[array1.length-m-1]).toArray();
+        System.out.println(Arrays.toString(reverseArray));
+	}
+
+}

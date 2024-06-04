@@ -1,0 +1,13 @@
+package com.main.service;
+
+import com.main.entity.NewAccount;
+
+public class NewAccountServiceInterfaceImpl implements NewAccountServiceInterface {
+
+	@Override
+	public NewAccount createAccount(NewAccount account) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

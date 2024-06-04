@@ -1,0 +1,8 @@
+/**
+ * 
+ */
+/**
+ * 
+ */
+module LogicalProgramsBasedOnJava_08 {
+}
